@@ -7,48 +7,29 @@
 <style>
   :root {
     --bg-base: #04070e;
-    --glass-surface: rgba(255, 255, 255, 0.065);
-    --glass-elevated: rgba(255, 255, 255, 0.11);
-    --glass-inner: rgba(8, 14, 26, 0.56);
+    --glass-inner: rgba(8, 14, 26, 0.58);
     --glass-border: rgba(255, 255, 255, 0.18);
     --glass-specular: rgba(255, 255, 255, 0.34);
     --ios-blue: #0a84ff;
     --ios-cyan: #5ac8fa;
     --ios-emerald: #30d158;
-    --ios-amber: #ffd60a;
     --ios-crimson: #ff453a;
     --ink: #f5f9ff;
-    --ink-secondary: rgba(235, 245, 255, 0.66);
-    --ink-muted: rgba(235, 245, 255, 0.42);
+    --ink-secondary: rgba(235, 245, 255, 0.68);
+    --ink-muted: rgba(235, 245, 255, 0.44);
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Prompt", "Kanit", "Segoe UI", Roboto, sans-serif;
     --font-mono: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
     --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
   html, body {
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-    background: var(--bg-base);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    touch-action: none;
-    -webkit-font-smoothing: antialiased;
+    width: 100vw; height: 100vh; height: 100dvh; overflow: hidden;
+    background: var(--bg-base); color: var(--ink); font-family: var(--font-sans);
+    touch-action: none; -webkit-font-smoothing: antialiased;
   }
   .ambient-aurora {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background:
       radial-gradient(circle at 16% 18%, rgba(10, 132, 255, 0.24) 0%, transparent 45%),
       radial-gradient(circle at 84% 22%, rgba(90, 200, 250, 0.18) 0%, transparent 46%),
@@ -57,168 +38,80 @@
   }
   .liquid-glass {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.04) 100%);
-    backdrop-filter: blur(28px) saturate(190%);
-    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    backdrop-filter: blur(28px) saturate(190%); -webkit-backdrop-filter: blur(28px) saturate(190%);
     border: 1px solid var(--glass-border);
     box-shadow: 0 18px 42px rgba(0, 0, 0, 0.52), 0 1px 0 0 var(--glass-specular) inset;
   }
   /* 1. LANDING SCREEN */
   #connectScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 30;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3vh 4vw;
-    background: radial-gradient(circle at 50% 20%, rgba(12, 26, 52, 0.78) 0%, rgba(3, 6, 12, 0.92) 78%);
-    backdrop-filter: blur(26px);
-    -webkit-backdrop-filter: blur(26px);
+    position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center;
+    padding: 3vh 4vw; background: radial-gradient(circle at 50% 20%, rgba(12, 26, 52, 0.78) 0%, rgba(3, 6, 12, 0.92) 78%);
+    backdrop-filter: blur(26px); -webkit-backdrop-filter: blur(26px);
     transition: opacity 0.48s var(--ease-spring), transform 0.48s var(--ease-spring);
   }
-  #connectScreen.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(1.05);
-  }
-  .landing-glass-card {
-    width: min(90vw, 640px);
-    border-radius: 32px;
-    padding: clamp(18px, 3.8vh, 34px) clamp(20px, 4vw, 40px);
-    text-align: center;
-  }
+  #connectScreen.hidden { opacity: 0; pointer-events: none; transform: scale(1.05); }
+  .landing-glass-card { width: min(90vw, 640px); border-radius: 32px; padding: clamp(18px, 3.8vh, 34px) clamp(20px, 4vw, 40px); text-align: center; }
   .ios-capsule-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 14px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: var(--ios-cyan);
-    font-size: clamp(10px, 1.9vh, 12px);
-    font-weight: 700;
-    letter-spacing: 1.4px;
-    margin-bottom: 1.4vh;
+    display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(255, 255, 255, 0.22);
+    color: var(--ios-cyan); font-size: clamp(10px, 1.9vh, 12px); font-weight: 700; letter-spacing: 1.4px; margin-bottom: 1.4vh;
   }
-  .pulse-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--ios-emerald);
-    box-shadow: 0 0 10px var(--ios-emerald);
-  }
+  .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ios-emerald); box-shadow: 0 0 10px var(--ios-emerald); }
   .landing-title {
-    font-size: clamp(22px, 4.8vh, 36px);
-    font-weight: 800;
+    font-size: clamp(22px, 4.8vh, 36px); font-weight: 800;
     background: linear-gradient(180deg, #ffffff 0%, #b8d8ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.6vh;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.6vh;
   }
-  .landing-subtitle {
-    color: var(--ink-secondary);
-    font-size: clamp(11px, 2.1vh, 14px);
-    max-width: 480px;
-    margin: 0 auto 2.6vh;
-    line-height: 1.45;
-  }
-  .landing-actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    margin-bottom: 1.8vh;
-  }
+  .landing-subtitle { color: var(--ink-secondary); font-size: clamp(11px, 2.1vh, 14px); max-width: 480px; margin: 0 auto 2.6vh; line-height: 1.45; }
+  .landing-actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 1.8vh; }
   .btn-glass-primary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: clamp(11px, 2.1vh, 16px) 18px;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: clamp(13px, 2.4vh, 16px);
-    font-weight: 700;
-    color: #ffffff;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: clamp(11px, 2.1vh, 16px) 18px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer; font-family: var(--font-sans); font-size: clamp(13px, 2.4vh, 16px); font-weight: 700; color: #fff;
     background: linear-gradient(135deg, rgba(10, 132, 255, 0.92) 0%, rgba(90, 200, 250, 0.82) 100%);
-    box-shadow: 0 12px 28px rgba(10, 132, 255, 0.38);
-    transition: transform 0.22s var(--ease-pop);
+    box-shadow: 0 12px 28px rgba(10, 132, 255, 0.38); transition: transform 0.22s var(--ease-pop);
   }
   .btn-glass-primary:active { transform: scale(0.96); }
   .btn-glass-secondary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: clamp(11px, 2.1vh, 16px) 18px;
-    border-radius: 18px;
-    border: 1px solid var(--glass-border);
-    cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: clamp(13px, 2.4vh, 16px);
-    font-weight: 700;
-    color: var(--ink);
-    background: rgba(255, 255, 255, 0.08);
-    transition: transform 0.22s var(--ease-pop);
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: clamp(11px, 2.1vh, 16px) 18px; border-radius: 18px; border: 1px solid var(--glass-border);
+    cursor: pointer; font-family: var(--font-sans); font-size: clamp(13px, 2.4vh, 16px); font-weight: 700;
+    color: var(--ink); background: rgba(255, 255, 255, 0.08); transition: transform 0.22s var(--ease-pop);
   }
   .btn-glass-secondary:active { transform: scale(0.96); }
   .btn-pill-subtle {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-    color: var(--ink-secondary);
-    font-size: clamp(11px, 1.9vh, 13px);
-    font-weight: 600;
-    padding: 7px 16px;
-    cursor: pointer;
+    background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px; color: var(--ink-secondary); font-size: clamp(11px, 1.9vh, 13px);
+    font-weight: 600; padding: 7px 16px; cursor: pointer;
   }
   /* 2. SMOOTH BLUETOOTH POPUP */
   #btPopupBackdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 45;
-    background: rgba(2, 6, 14, 0.68);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.32s var(--ease-spring);
+    position: fixed; inset: 0; z-index: 45; background: rgba(2, 6, 14, 0.68);
+    backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.32s var(--ease-spring);
   }
   #btPopupBackdrop.open { opacity: 1; pointer-events: auto; }
   .bt-popup-sheet {
-    width: min(88vw, 520px);
-    max-height: 84vh;
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    padding: 2.6vh 2.8vw;
-    background: linear-gradient(160deg, rgba(28, 42, 68, 0.86) 0%, rgba(12, 20, 36, 0.94) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.26);
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.72);
-    transform: scale(0.52) translateY(28px);
-    opacity: 0;
+    width: min(88vw, 520px); max-height: 84vh; display: flex; flex-direction: column;
+    border-radius: 30px; padding: 2.6vh 2.8vw;
+    background: linear-gradient(160deg, rgba(28, 42, 68, 0.88) 0%, rgba(12, 20, 36, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.26); box-shadow: 0 28px 70px rgba(0, 0, 0, 0.72);
+    transform: scale(0.52) translateY(28px); opacity: 0;
     transition: transform 0.42s var(--ease-pop), opacity 0.28s ease;
   }
   #btPopupBackdrop.open .bt-popup-sheet { transform: scale(1) translateY(0); opacity: 1; }
   .sheet-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2vh; }
   .sheet-title { font-size: clamp(15px, 2.9vh, 19px); font-weight: 800; color: #fff; }
   .btn-icon-close {
-    width: 32px; height: 32px; border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.1); color: #fff; cursor: pointer;
   }
   .bt-device-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin: 1.2vh 0 1.6vh; }
   .bt-device-row {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 11px 15px; border-radius: 16px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    cursor: pointer;
+    padding: 11px 15px; border-radius: 16px; background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14); cursor: pointer;
   }
   .bt-device-row.highlight {
     background: linear-gradient(135deg, rgba(48, 209, 88, 0.22) 0%, rgba(10, 132, 255, 0.22) 100%);
@@ -229,23 +122,20 @@
   .bt-connect-badge { padding: 5px 13px; border-radius: 999px; background: var(--ios-blue); color: #fff; font-weight: 700; font-size: 11px; }
   .bt-sheet-footer { display: flex; gap: 10px; }
   .bt-footer-btn {
-    flex: 1; padding: 9px 12px; border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    flex: 1; padding: 9px 12px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.08); color: #fff; font-weight: 600; cursor: pointer;
   }
   /* 3. GREEN CONNECTED OVERLAY */
   #successOverlay {
     position: fixed; inset: 0; z-index: 70;
     background: radial-gradient(circle at 50% 42%, rgba(48, 209, 88, 0.94) 0%, rgba(17, 138, 62, 0.96) 62%, rgba(7, 78, 34, 0.98) 100%);
-    backdrop-filter: blur(25px);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    backdrop-filter: blur(25px); display: flex; flex-direction: column; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity 0.34s var(--ease-spring);
   }
   #successOverlay.active { opacity: 1; pointer-events: auto; }
   .check-glass-orb {
     width: clamp(82px, 18vh, 120px); height: clamp(82px, 18vh, 120px);
-    border-radius: 50%; background: #ffffff;
-    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;
     box-shadow: 0 22px 55px rgba(0, 45, 20, 0.42);
     transform: scale(0.35); transition: transform 0.5s var(--ease-pop); margin-bottom: 2vh;
   }
@@ -477,4 +367,397 @@
             <rect x="74" y="75" width="72" height="60" rx="12" fill="rgba(5,12,24,0.92)" stroke="rgba(90,200,250,0.45)" stroke-width="1.5"/>
             <text x="110" y="94" text-anchor="middle" fill="#5ac8fa" font-size="9.5" font-weight="800">L298N DUAL</text>
             <text id="carCoreStateTxt" x="110" y="111" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="800">IDLE</text>
-            <text id="carDutyTxt" x="110" y="126" text-anchor="middle" fill="#30d158" font-size="8.5" font-weight="700">PWM:
+            <text id="carDutyTxt" x="110" y="126" text-anchor="middle" fill="#30d158" font-size="8.5" font-weight="700">PWM: 0</text>
+          </svg>
+        </div>
+        <div class="telemetry-metrics-col">
+          <div class="metric-glass-tile"><div class="metric-lbl">PWM DUTY CYCLE</div><div id="metricDutyVal" class="metric-val">0 / 255</div></div>
+          <div class="metric-glass-tile"><div class="metric-lbl">DRIVE VECTOR</div><div id="metricVectorVal" class="metric-val">STANDBY</div></div>
+          <div class="metric-glass-tile"><div class="metric-lbl">TRIM GAIN (A / B)</div><div id="metricGainVal" class="metric-val">100% / 100%</div></div>
+        </div>
+      </div>
+      <div class="ab-meters-grid">
+        <div class="ab-meter-box"><div class="ab-meter-head"><span id="lblMeterA">CHANNEL A (ซ้าย)</span><span id="valMeterA">0%</span></div><div class="ab-bar-track"><div id="barMeterA" class="ab-bar-fill"></div></div></div>
+        <div class="ab-meter-box"><div class="ab-meter-head"><span id="lblMeterB">CHANNEL B (ขวา)</span><span id="valMeterB">0%</span></div><div class="ab-bar-track"><div id="barMeterB" class="ab-bar-fill"></div></div></div>
+      </div>
+    </section>
+
+    <!-- RIGHT: THROTTLE PILL & TORQUE RING -->
+    <section class="cockpit-card liquid-glass">
+      <div class="card-head"><span>THROTTLE / คันเร่ง</span><span id="twistPctHeader" style="color:var(--ios-cyan);">70%</span></div>
+      <div class="throttle-body">
+        <div id="throttleRail" class="custom-throttle-rail">
+          <div id="throttleFill" class="custom-throttle-fill"></div>
+          <div class="custom-throttle-label"><span>THROTTLE</span><span id="railPctTxt" style="font-size:13px;font-weight:800;margin-top:2px;">70%</span></div>
+        </div>
+        <div class="throttle-right-col">
+          <div class="twist-gauge-card">
+            <svg class="twist-ring-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="8"/>
+              <circle id="twistArc" cx="50" cy="50" r="40" fill="none" stroke="#0a84ff" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="75.36" transform="rotate(-90 50 50)"/>
+              <text id="twistGaugeNum" x="50" y="54" text-anchor="middle" fill="#ffffff" font-size="21" font-weight="800">70%</text>
+              <text x="50" y="69" text-anchor="middle" fill="rgba(235,245,255,0.55)" font-size="8.5" font-weight="700">TORQUE %</text>
+            </svg>
+          </div>
+          <div class="quick-btn-stack">
+            <button id="btnBoostHold" class="quick-ctrl-btn boost-btn" type="button">⚡ กดค้าง BOOST 100%</button>
+            <button id="btnQuickTestA" class="quick-ctrl-btn" type="button">🔧 ทดสอบช่อง A (0.7s)</button>
+            <button id="btnQuickTestB" class="quick-ctrl-btn" type="button">🔧 ทดสอบช่อง B (0.7s)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- 5. MENU MODAL -->
+<div id="menuModal" class="modal-backdrop">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div style="font-weight:800;">⚙️ ตั้งค่ามอเตอร์ & โหมดการต่อสาย (MENU)</div>
+      <button id="btnCloseMenu" class="btn-icon-close" type="button">✕</button>
+    </div>
+    <div class="setting-item">
+      <div>1. โหมดการต่อสายมอเตอร์กับ L298N</div>
+      <div style="display:flex;gap:8px;">
+        <button id="btnModeLR" class="chip-btn active" type="button">A=ซ้าย / B=ขวา (Skid-Steer)</button>
+        <button id="btnModeFB" class="chip-btn" type="button">A=หน้า / B=หลัง (บล็อกเลี้ยว)</button>
+      </div>
+    </div>
+    <div class="setting-item">
+      <div>2. กลับทิศทางหมุน & สลับช่อง</div>
+      <div style="display:flex;gap:8px;">
+        <button id="btnInvA" class="chip-btn" type="button">กลับทิศ ช่อง A</button>
+        <button id="btnInvB" class="chip-btn" type="button">กลับทิศ ช่อง B</button>
+        <button id="btnSwapAB" class="chip-btn" type="button">สลับช่อง A ↔ B</button>
+      </div>
+    </div>
+    <div class="setting-item">
+      <div>3. ปรับสมดุลกำลัง ช่อง A (<span id="lblGainA">100</span>%) / ช่อง B (<span id="lblGainB">100</span>%)</div>
+      <div style="display:flex;gap:10px;">
+        <input id="rngGainA" type="range" min="50" max="100" value="100"/>
+        <input id="rngGainB" type="range" min="50" max="100" value="100"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  "use strict";
+  var state = {
+    connected: false, linkType: "NONE", deviceName: "", gear: "NORMAL", throttlePct: 70,
+    boostActive: false, estopLocked: false, wireMode: 1, invA: false, invB: false, swapAB: false,
+    gainA: 100, gainB: 100, pressedDirs: { FWD: false, REV: false, LEFT: false, RIGHT: false },
+    cmdA: 0, cmdB: 0, telemA: 0, telemB: 0, lastRxMs: 0
+  };
+  function hasNative() { return typeof window.Native !== "undefined" && window.Native !== null; }
+  function safeVibrate(ms) {
+    try {
+      if (hasNative() && typeof window.Native.vibrate === "function") window.Native.vibrate(ms);
+      else if (navigator.vibrate) navigator.vibrate(ms);
+    } catch (e) {}
+  }
+  function sendProtocolLine(line, force) {
+    try { if (hasNative() && typeof window.Native.send === "function") window.Native.send(line, !!force); } catch (e) {}
+  }
+  function calcDutyFromPct(pct) {
+    var a = Math.abs(pct);
+    if (a < 1) return 0;
+    return Math.round(90 + (Math.min(100, a) / 100) * (255 - 90));
+  }
+
+  var elConnectScreen = document.getElementById("connectScreen");
+  var elBtPopupBackdrop = document.getElementById("btPopupBackdrop");
+  var elBtDeviceList = document.getElementById("btDeviceList");
+  var elSuccessOverlay = document.getElementById("successOverlay");
+  var elConnectedSubTxt = document.getElementById("connectedSubText");
+  var elLinkBadge = document.getElementById("linkBadge");
+  var elLinkText = document.getElementById("linkText");
+  var elTurnWarnBanner = document.getElementById("turnWarnBanner");
+  var elActiveActionTxt = document.getElementById("activeActionText");
+  var elCmdLiveChip = document.getElementById("cmdLiveChip");
+  var elPowerPctNum = document.getElementById("powerPctNum");
+  var elQuickWireBtn = document.getElementById("btnQuickWireToggle");
+  var elCarCoreStateTxt = document.getElementById("carCoreStateTxt");
+  var elCarDutyTxt = document.getElementById("carDutyTxt");
+  var elMetricDutyVal = document.getElementById("metricDutyVal");
+  var elMetricVectorVal = document.getElementById("metricVectorVal");
+  var elMetricGainVal = document.getElementById("metricGainVal");
+  var elLblMeterA = document.getElementById("lblMeterA");
+  var elLblMeterB = document.getElementById("lblMeterB");
+  var elValMeterA = document.getElementById("valMeterA");
+  var elValMeterB = document.getElementById("valMeterB");
+  var elBarMeterA = document.getElementById("barMeterA");
+  var elBarMeterB = document.getElementById("barMeterB");
+  var elThrottleRail = document.getElementById("throttleRail");
+  var elThrottleFill = document.getElementById("throttleFill");
+  var elRailPctTxt = document.getElementById("railPctTxt");
+  var elTwistPctHeader = document.getElementById("twistPctHeader");
+  var elTwistArc = document.getElementById("twistArc");
+  var elTwistGaugeNum = document.getElementById("twistGaugeNum");
+  var elBtnEstop = document.getElementById("btnEstop");
+
+  var warnTimeout = null;
+  function flashTurnWarning() {
+    elTurnWarnBanner.classList.add("show");
+    if (warnTimeout) clearTimeout(warnTimeout);
+    warnTimeout = setTimeout(function() { elTurnWarnBanner.classList.remove("show"); }, 2400);
+  }
+
+  function renderBtDevices(devices) {
+    elBtDeviceList.innerHTML = "";
+    if (!devices || devices.length === 0) {
+      elBtDeviceList.innerHTML = "<div style='padding:16px;text-align:center;'>ไม่พบอุปกรณ์ที่จับคู่ไว้ กรุณาจับคู่กับ <b>THEPKUB</b> ในตั้งค่าเครื่อง</div>";
+      return;
+    }
+    devices.sort(function(a, b) {
+      var aT = (a.name && a.name.toUpperCase().indexOf("THEPKUB") !== -1) ? -1 : 1;
+      var bT = (b.name && b.name.toUpperCase().indexOf("THEPKUB") !== -1) ? -1 : 1;
+      return aT - bT;
+    });
+    for (var i = 0; i < devices.length; i++) {
+      (function(dev) {
+        var isTarget = dev.name && dev.name.toUpperCase().indexOf("THEPKUB") !== -1;
+        var row = document.createElement("div");
+        row.className = "bt-device-row" + (isTarget ? " highlight" : "");
+        row.innerHTML = '<div><div class="bt-dev-name">' + (dev.name || "Unknown") + '</div><div class="bt-dev-addr">' + (dev.address || dev.addr || "") + '</div></div><div class="bt-connect-badge">เชื่อมต่อ</div>';
+        row.addEventListener("click", function() {
+          safeVibrate(20);
+          if (hasNative() && typeof window.Native.connectBt === "function") {
+            elLinkText.textContent = "CONNECTING...";
+            window.Native.connectBt(dev.address || dev.addr);
+          } else {
+            setOnlineState("BT", dev.name || "THEPKUB");
+          }
+        });
+        elBtDeviceList.appendChild(row);
+      })(devices[i]);
+    }
+  }
+
+  function openBtPopup() {
+    elBtPopupBackdrop.classList.add("open");
+    if (hasNative() && typeof window.Native.paired === "function") {
+      try {
+        window.Native.askBt();
+        var list = JSON.parse(window.Native.paired() || "[]");
+        if (list.length > 0) { renderBtDevices(list); return; }
+      } catch (e) {}
+    }
+    renderBtDevices([{ name: "THEPKUB (ESP32-4WD)", address: "A4:CF:12:88:9E:01" }]);
+  }
+
+  function setOnlineState(linkType, name) {
+    state.connected = true; state.linkType = linkType; state.deviceName = name || linkType; state.lastRxMs = Date.now();
+    elLinkBadge.classList.add("ok"); elLinkText.textContent = "LINK OK • " + state.deviceName;
+    elBtPopupBackdrop.classList.remove("open");
+    elConnectedSubTxt.textContent = "อุปกรณ์: " + state.deviceName;
+    elSuccessOverlay.classList.add("active");
+    setTimeout(function() {
+      elConnectScreen.classList.add("hidden");
+      elSuccessOverlay.classList.remove("active");
+    }, 1500);
+    sendProtocolLine("G", true);
+  }
+
+  window.nat = function(type, payload) {
+    if (type === "perm" && (payload === "1" || payload === "granted")) openBtPopup();
+    else if (type === "ok") setOnlineState("NATIVE", payload || "THEPKUB");
+    else if (type === "err" || type === "lost") {
+      triggerEmergencyStop(false);
+      state.connected = false; elLinkBadge.classList.remove("ok"); elLinkText.textContent = "NO SIGNAL";
+    } else if (type === "pause") triggerEmergencyStop(false);
+    else if (type === "line" && payload) {
+      state.lastRxMs = Date.now();
+      var p = String(payload).trim().split(",");
+      if (p[0] === "T" && p.length >= 3) {
+        state.telemA = parseInt(p[1], 10) || 0; state.telemB = parseInt(p[2], 10) || 0;
+        updateCarAndMetersUI(state.telemA, state.telemB);
+      } else if (p[0] === "CFG" && p.length >= 5) {
+        state.invA = (p[1] === "1"); state.invB = (p[2] === "1");
+        state.gainA = parseInt(p[3], 10) || 100; state.gainB = parseInt(p[4], 10) || 100;
+        syncMenuControls();
+      }
+    }
+  };
+
+  function setThrottlePercent(pct) {
+    pct = Math.max(15, Math.min(100, Math.round(pct)));
+    state.throttlePct = pct;
+    elThrottleFill.style.height = pct + "%";
+    elRailPctTxt.textContent = pct + "%";
+    elTwistPctHeader.textContent = pct + "%";
+    elTwistGaugeNum.textContent = pct + "%";
+    elTwistArc.setAttribute("stroke-dashoffset", String((251.2 - (pct / 100) * 251.2).toFixed(2)));
+    computeMotorCommand();
+  }
+
+  var railDragging = false;
+  function updateRail(ev) {
+    var rect = elThrottleRail.getBoundingClientRect();
+    if (rect && rect.height > 0) setThrottlePercent(Math.round((1 - ((ev.clientY - rect.top) / rect.height)) * 100));
+  }
+  elThrottleRail.addEventListener("pointerdown", function(ev) { ev.preventDefault(); railDragging = true; updateRail(ev); });
+  elThrottleRail.addEventListener("pointermove", function(ev) { if (railDragging) { ev.preventDefault(); updateRail(ev); } });
+  window.addEventListener("pointerup", function() { railDragging = false; });
+
+  function computeMotorCommand() {
+    if (state.estopLocked) { state.cmdA = 0; state.cmdB = 0; elActiveActionTxt.textContent = "LOCKED"; return; }
+    var p = state.pressedDirs, pwr = state.boostActive ? 100 : state.throttlePct;
+    var f = (p.FWD ? 1 : 0) - (p.REV ? 1 : 0), s = (p.RIGHT ? 1 : 0) - (p.LEFT ? 1 : 0);
+    var a = 0, b = 0, label = "STANDBY";
+    if (f !== 0 || s !== 0) {
+      if (state.wireMode === 0) {
+        if (s !== 0) flashTurnWarning();
+        a = f * pwr; b = f * pwr; label = f > 0 ? "FORWARD 4WD" : (f < 0 ? "REVERSE 4WD" : "TURN BLOCKED");
+      } else {
+        if (f !== 0 && s === 0) { a = f * pwr; b = f * pwr; label = f > 0 ? "FORWARD" : "REVERSE"; }
+        else if (f === 0 && s !== 0) { a = s * pwr; b = -s * pwr; label = s > 0 ? "PIVOT RIGHT" : "PIVOT LEFT"; }
+        else {
+          var inner = Math.round(pwr * 0.35);
+          if (s > 0) { a = f * pwr; b = f * inner; label = "ARC RIGHT"; }
+          else { a = f * inner; b = f * pwr; label = "ARC LEFT"; }
+        }
+      }
+    }
+    if (state.swapAB) { var t = a; a = b; b = t; }
+    state.cmdA = Math.max(-100, Math.min(100, Math.round(a)));
+    state.cmdB = Math.max(-100, Math.min(100, Math.round(b)));
+    elActiveActionTxt.textContent = label;
+    elMetricVectorVal.textContent = label;
+  }
+
+  function triggerEmergencyStop(toggleLock) {
+    state.pressedDirs = { FWD: false, REV: false, LEFT: false, RIGHT: false };
+    state.boostActive = false; state.cmdA = 0; state.cmdB = 0;
+    if (toggleLock) {
+      state.estopLocked = !state.estopLocked;
+      elBtnEstop.textContent = state.estopLocked ? "🔓 UNLOCK" : "🛑 STOP";
+    }
+    var keys = document.querySelectorAll(".dpad-key");
+    for (var i = 0; i < keys.length; i++) keys[i].classList.remove("active");
+    computeMotorCommand(); sendProtocolLine("S", true); updateCarAndMetersUI(0, 0);
+  }
+
+  function renderWheelSvg(rectId, txtId, signedPct) {
+    var r = document.getElementById(rectId), t = document.getElementById(txtId);
+    if (!r || !t) return;
+    r.classList.remove("fwd", "rev");
+    if (signedPct > 0) r.classList.add("fwd"); else if (signedPct < 0) r.classList.add("rev");
+    t.textContent = (signedPct > 0 ? "▲" : (signedPct < 0 ? "▼" : "")) + Math.abs(signedPct) + "%";
+  }
+
+  function updateCarAndMetersUI(a, b) {
+    var absA = Math.min(100, Math.abs(a)), absB = Math.min(100, Math.abs(b));
+    var maxPwr = Math.max(absA, absB), maxDuty = calcDutyFromPct(maxPwr);
+    elPowerPctNum.textContent = String(maxPwr);
+    elValMeterA.textContent = a + "%"; elValMeterB.textContent = b + "%";
+    elBarMeterA.style.width = absA + "%"; elBarMeterB.style.width = absB + "%";
+    if (state.wireMode === 0) {
+      renderWheelSvg("wheelFL", "txtFL", a); renderWheelSvg("wheelFR", "txtFR", a);
+      renderWheelSvg("wheelRL", "txtRL", b); renderWheelSvg("wheelRR", "txtRR", b);
+    } else {
+      renderWheelSvg("wheelFL", "txtFL", a); renderWheelSvg("wheelRL", "txtRL", a);
+      renderWheelSvg("wheelFR", "txtFR", b); renderWheelSvg("wheelRR", "txtRR", b);
+    }
+    elCarCoreStateTxt.textContent = maxPwr === 0 ? "IDLE" : ("A:" + a + " B:" + b);
+    elCarDutyTxt.textContent = "PWM: " + maxDuty;
+    elMetricDutyVal.textContent = maxDuty + " / 255";
+    elCmdLiveChip.textContent = "TX: M," + a + "," + b + " • PWM: " + maxDuty + "/255";
+  }
+
+  var activePointers = {};
+  function syncPointers() {
+    state.pressedDirs = { FWD: false, REV: false, LEFT: false, RIGHT: false };
+    var keys = document.querySelectorAll(".dpad-key");
+    for (var i = 0; i < keys.length; i++) keys[i].classList.remove("active");
+    var pIds = Object.keys(activePointers);
+    for (var j = 0; j < pIds.length; j++) {
+      var d = activePointers[pIds[j]];
+      if (state.pressedDirs.hasOwnProperty(d)) state.pressedDirs[d] = true;
+    }
+    var map = { FWD: "btnFwd", REV: "btnRev", LEFT: "btnLeft", RIGHT: "btnRight" };
+    for (var k in map) if (state.pressedDirs[k]) document.getElementById(map[k]).classList.add("active");
+    computeMotorCommand();
+  }
+
+  function bindDpad(id, code) {
+    var b = document.getElementById(id);
+    b.addEventListener("pointerdown", function(e) {
+      e.preventDefault();
+      if (code === "STOP") { activePointers = {}; triggerEmergencyStop(false); return; }
+      activePointers[e.pointerId] = code; syncPointers();
+    });
+    function rel(e) { delete activePointers[e.pointerId]; syncPointers(); }
+    b.addEventListener("pointerup", rel); b.addEventListener("pointercancel", rel);
+  }
+  bindDpad("btnFwd", "FWD"); bindDpad("btnRev", "REV"); bindDpad("btnLeft", "LEFT"); bindDpad("btnRight", "RIGHT"); bindDpad("btnCenterStop", "STOP");
+
+  setInterval(function() {
+    if (state.estopLocked) { sendProtocolLine("S", false); return; }
+    sendProtocolLine("M," + state.cmdA + "," + state.cmdB, false);
+    if (!hasNative() || state.linkType !== "NATIVE" || (Date.now() - state.lastRxMs > 400)) {
+      updateCarAndMetersUI(
+        Math.round(state.cmdA * (state.gainA / 100) * (state.invA ? -1 : 1)),
+        Math.round(state.cmdB * (state.gainB / 100) * (state.invB ? -1 : 1))
+      );
+    }
+  }, 50);
+
+  document.getElementById("btnOpenBtPopup").addEventListener("click", openBtPopup);
+  document.getElementById("btnCloseBtPopup").addEventListener("click", function() { elBtPopupBackdrop.classList.remove("open"); });
+  document.getElementById("btnRescanBt").addEventListener("click", openBtPopup);
+  document.getElementById("btnSysBtSettings").addEventListener("click", function() { if (hasNative()) window.Native.openBtSettings(); });
+  document.getElementById("btnConnectWifiAp").addEventListener("click", function() {
+    if (hasNative()) window.Native.connectWifi(); else setOnlineState("WIFI", "THEPKUBWIFI");
+  });
+  document.getElementById("btnEnterDemoDirect").addEventListener("click", function() { setOnlineState("SIM", "THEPKUB 4WD PRO"); });
+  document.getElementById("btnTopConnect").addEventListener("click", function() { triggerEmergencyStop(false); elConnectScreen.classList.remove("hidden"); });
+  elBtnEstop.addEventListener("click", function() { triggerEmergencyStop(true); });
+
+  var gBtns = document.querySelectorAll(".gear-seg-btn");
+  for (var g = 0; g < gBtns.length; g++) {
+    gBtns[g].addEventListener("click", function() {
+      for (var k = 0; k < gBtns.length; k++) gBtns[k].classList.remove("active");
+      this.classList.add("active");
+      state.gear = this.getAttribute("data-gear") || "NORMAL";
+      setThrottlePercent(parseInt(this.getAttribute("data-pct"), 10) || 70);
+    });
+  }
+
+  var btnBoost = document.getElementById("btnBoostHold");
+  btnBoost.addEventListener("pointerdown", function(e) { e.preventDefault(); state.boostActive = true; computeMotorCommand(); });
+  window.addEventListener("pointerup", function() { if (state.boostActive) { state.boostActive = false; computeMotorCommand(); } });
+
+  function testCh(ch) { sendProtocolLine("T," + ch, true); updateCarAndMetersUI(ch === "A" ? 65 : 0, ch === "B" ? 65 : 0); setTimeout(function() { updateCarAndMetersUI(0, 0); }, 700); }
+  document.getElementById("btnQuickTestA").addEventListener("click", function() { testCh("A"); });
+  document.getElementById("btnQuickTestB").addEventListener("click", function() { testCh("B"); });
+
+  var elMenuModal = document.getElementById("menuModal");
+  document.getElementById("btnTopMenu").addEventListener("click", function() { elMenuModal.classList.add("open"); });
+  document.getElementById("btnCloseMenu").addEventListener("click", function() { elMenuModal.classList.remove("open"); });
+
+  function syncMenuControls() {
+    elQuickWireBtn.textContent = state.wireMode === 1 ? "โหมดสาย: A=ซ้าย / B=ขวา (Skid-Steer)" : "โหมดสาย: A=หน้า / B=หลัง (บล็อกเลี้ยว)";
+    elLblMeterA.textContent = state.wireMode === 1 ? "CHANNEL A (ซ้าย)" : "CHANNEL A (หน้า)";
+    elLblMeterB.textContent = state.wireMode === 1 ? "CHANNEL B (ขวา)" : "CHANNEL B (หลัง)";
+    document.getElementById("lblGainA").textContent = String(state.gainA);
+    document.getElementById("lblGainB").textContent = String(state.gainB);
+    elMetricGainVal.textContent = state.gainA + "% / " + state.gainB + "%";
+  }
+  elQuickWireBtn.addEventListener("click", function() { state.wireMode = state.wireMode === 1 ? 0 : 1; syncMenuControls(); computeMotorCommand(); });
+  document.getElementById("btnModeLR").addEventListener("click", function() { state.wireMode = 1; syncMenuControls(); computeMotorCommand(); });
+  document.getElementById("btnModeFB").addEventListener("click", function() { state.wireMode = 0; syncMenuControls(); computeMotorCommand(); });
+  document.getElementById("btnInvA").addEventListener("click", function() { state.invA = !state.invA; sendProtocolLine("I," + (state.invA?1:0) + "," + (state.invB?1:0), true); });
+  document.getElementById("btnInvB").addEventListener("click", function() { state.invB = !state.invB; sendProtocolLine("I," + (state.invA?1:0) + "," + (state.invB?1:0), true); });
+  document.getElementById("btnSwapAB").addEventListener("click", function() { state.swapAB = !state.swapAB; });
+  document.getElementById("rngGainA").addEventListener("input", function() { state.gainA = parseInt(this.value, 10) || 100; syncMenuControls(); sendProtocolLine("K," + state.gainA + "," + state.gainB, true); });
+  document.getElementById("rngGainB").addEventListener("input", function() { state.gainB = parseInt(this.value, 10) || 100; syncMenuControls(); sendProtocolLine("K," + state.gainA + "," + state.gainB, true); });
+
+  syncMenuControls();
+  setThrottlePercent(70);
+})();
+</script>
+</body>
+</html>

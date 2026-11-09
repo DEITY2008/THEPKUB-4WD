@@ -30,8 +30,9 @@ jobs:
         run: |
           APK_PATH="app/build/outputs/apk/debug/app-debug.apk"
           ls -lh "$APK_PATH"
-          $ANDROID_HOME/build-tools/*/apksigner verify --verbose "$APK_PATH"
-          $ANDROID_HOME/build-tools/*/aapt dump badging "$APK_PATH" | head -n 20
+          BUILD_TOOLS_DIR=$(ls -d $ANDROID_HOME/build-tools/* | tail -n 1)
+          "$BUILD_TOOLS_DIR/apksigner" verify --verbose "$APK_PATH"
+          "$BUILD_TOOLS_DIR/aapt" dump badging "$APK_PATH" | head -n 20
           unzip -l "$APK_PATH" | grep "assets/index.html"
 
       - name: Upload THEPKUB.apk Artifact

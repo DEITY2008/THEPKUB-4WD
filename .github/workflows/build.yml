@@ -1,0 +1,41 @@
+name: Build THEPKUB APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle 8.7
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Build Debug APK
+        run: gradle assembleDebug --no-daemon
+
+      - name: Verify APK Signature & Assets
+        run: |
+          APK_PATH="app/build/outputs/apk/debug/app-debug.apk"
+          ls -lh "$APK_PATH"
+          $ANDROID_HOME/build-tools/*/apksigner verify --verbose "$APK_PATH"
+          $ANDROID_HOME/build-tools/*/aapt dump badging "$APK_PATH" | head -n 20
+          unzip -l "$APK_PATH" | grep "assets/index.html"
+
+      - name: Upload THEPKUB.apk Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: THEPKUB-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
